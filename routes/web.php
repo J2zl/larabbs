@@ -11,7 +11,4 @@
 |
 */
 
-Route::get('/', function () {
-    config(['app.timezone' => 'America/Chicago']);
-    return $value = config('app.timezone');
-});
+Route::get('/','PagesController@root')->name('root');
