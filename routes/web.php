@@ -12,5 +12,6 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    config(['app.timezone' => 'America/Chicago']);
+    return $value = config('app.timezone');
 });
