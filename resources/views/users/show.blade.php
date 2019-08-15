@@ -11,7 +11,7 @@
                 <div class="panel-body">
                     <div class="media">
                         <div align="center">
-                            <img class="thumbnail img-responsive" src="http://img2.imgtn.bdimg.com/it/u=1422784010,1847471088&fm=26&gp=0.jpg" width="300px" height="300px">
+                            <img class="thumbnail img-responsive" src="{{ $user->avatar }}" width="300px" height="300px">
                         </div>
                         <div class="media-body">
                             <hr>
