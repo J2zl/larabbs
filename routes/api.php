@@ -16,7 +16,8 @@ use Illuminate\Http\Request;
 $api = app('Dingo\Api\Routing\Router');
 
 $api->version('v1', [
-    'namespace' => 'App\Http\Controllers\Api'
+    'namespace' => 'App\Http\Controllers\Api',
+    'middleware' => 'serializer:array'
 ], function($api) {
     // 节流接口
     $api->group([
@@ -36,6 +37,11 @@ $api->version('v1', [
         $api->post('captchas', 'CaptchasController@store')
             ->name('api.captchas.store');
 
+        $api->group(['middleware' => 'api.auth'], function($api) {
+            // 当前登录用户信息
+            $api->get('user', 'UsersController@me')
+                ->name('api.user.show');
+        });
     });
     //第三方登陆
     $api->post('socials/{social_type}/authorizations','AuthorizationsController@socialStore')
