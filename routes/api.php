@@ -17,7 +17,7 @@ $api = app('Dingo\Api\Routing\Router');
 
 $api->version('v1', [
     'namespace' => 'App\Http\Controllers\Api',
-    'middleware' => 'serializer:array'
+    'middleware' => ['serializer:array','bindings']
 ], function($api) {
     // 节流接口
     $api->group([
@@ -56,6 +56,10 @@ $api->version('v1', [
             // 发布话题
             $api->post('topics','TopicsController@store')
                 ->name('api.topics.store');
+
+            // 修改话题
+            $api->patch('topics/{topic}','TopicsController@update')
+                ->name('api.topics.update');
         });
     });
     //第三方登陆
