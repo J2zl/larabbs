@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Api;
 
 use Dingo\Api\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UserRequest extends FormRequest
 {
@@ -28,7 +29,11 @@ class UserRequest extends FormRequest
                     'name' => 'between:3,25|regex:/^[A-Za-z0-9\-\_]+$/|unique:users,name,' .$userId,
                     'email' => 'email',
                     'introduction' => 'max:80',
-                    'avatar_image_id' => 'exists:images,id,type,avatar,user_id,'.$userId,
+                    'avatar_image_id' => [
+                        Rule::exists('images','id')->where(function ($query) use ($userId) {
+                            $query->where('type','avatar')->where('user_id',$userId);
+                        }),
+                    ],
                 ];
                 break;
         }

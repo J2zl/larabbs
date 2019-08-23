@@ -37,6 +37,9 @@ $api->version('v1', [
         $api->post('captchas', 'CaptchasController@store')
             ->name('api.captchas.store');
 
+        $api->get('categories','CategoriesController@index')
+            ->name('api.categories.index');
+
         $api->group(['middleware' => 'api.auth'], function($api) {
             // 当前登录用户信息
             $api->get('user', 'UsersController@me')
