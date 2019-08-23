@@ -37,8 +37,17 @@ $api->version('v1', [
         $api->post('captchas', 'CaptchasController@store')
             ->name('api.captchas.store');
 
+        // 分类列表
         $api->get('categories','CategoriesController@index')
             ->name('api.categories.index');
+
+        // 话题列表
+        $api->get('topics','TopicsController@index')
+            ->name('api.topics.index');
+
+        // 查询某个用户话题
+        $api->get('users/{user}/topics','TopicsController@userIndex')
+            ->name('api.users.topics.index');
 
         $api->group(['middleware' => 'api.auth'], function($api) {
             // 当前登录用户信息
@@ -64,6 +73,7 @@ $api->version('v1', [
             // 删除话题
             $api->delete('topics/{topic}','TopicsController@destroy')
                 ->name('api.topics.destroy');
+
         });
     });
     //第三方登陆
