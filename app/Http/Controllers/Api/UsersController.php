@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Models\User;
 use App\Models\Image;
+use App\Transformers\RoleTransformer;
 use Illuminate\Http\Request;
 use App\Transformers\UserTransformer;
 use App\Http\Requests\Api\UserRequest;
@@ -11,6 +12,7 @@ use App\Http\Requests\Api\UserRequest;
 class UsersController extends Controller
 {
     //
+
     public function store(UserRequest $request)
     {
         $verifyData = \Cache::get($request->verification_key);
@@ -61,4 +63,6 @@ class UsersController extends Controller
 
         return $this->response->item($user,new UserTransformer());
     }
+
+
 }
