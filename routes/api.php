@@ -53,6 +53,14 @@ $api->version('v1', [
         $api->get('topics/{topic}','TopicsController@show')
             ->name('api.topics.show');
 
+        // 话题回复列表
+        $api->get('topics/{topic}/replies','TopicsController@index')
+            ->name('api.topics.replies.index');
+
+        // 某个用户的回复列表
+        $api->get('users/{user}/replies','RepliesController@userIndex')
+            ->name('api.users.replies.index');
+
         $api->group(['middleware' => 'api.auth'], function($api) {
             // 当前登录用户信息
             $api->get('user', 'UsersController@me')
