@@ -43,6 +43,7 @@ $app->singleton(
     App\Exceptions\Handler::class
 );
 
+$app->register(Overtrue\LaravelLang\TranslationServiceProvider::class);
 /*
 |--------------------------------------------------------------------------
 | Return The Application
